@@ -29,14 +29,15 @@ export default function AutosuggestInput() {
 
 
     return (
-        <AsyncSelect
-            styles={{ container: () => ({ width: '100%', marginBottom: 50 }) }} 
-            placeholder="Enter location name..." 
-            onChange={onOptionSelected} 
-            cacheOptions 
-            onInputChange={setValue} 
-            value={value} 
-            loadOptions={getResults} />
+        <div style={{ width: '100%', marginBottom: 50 }}>
+            <AsyncSelect
+                placeholder="Enter location name..."
+                onChange={onOptionSelected}
+                cacheOptions
+                onInputChange={setValue}
+                value={value}
+                loadOptions={getResults} />
+        </div>
     )
 
 }
