@@ -19,7 +19,8 @@ export default function ForecastDisplay() {
     }, [])
 
     const getDayName = dateString => (new Date(dateString)).toLocaleString('en-us', { weekday: 'short' })
-    const isEvening = (new Date()).getHours > 15;
+    const timeOfDay = (new Date()).getHours > 15 ? 'Night' : 'Day';
+    const getIconUrl = iconNumber => `https://developer.accuweather.com/sites/default/files/${iconNumber.toString().padStart(2,'0')}-s.png`
 
 
     if (!dayData) {
@@ -57,8 +58,9 @@ export default function ForecastDisplay() {
                         <Card className={styles['day-card']} variant="outlined" key={item.Date} >
                             <CardContent className={styles['day-card-content']}>
                                 <h4>{getDayName(item.Date)}</h4>
+                                <img alt={item[timeOfDay].IconPhrase} src={getIconUrl(item[timeOfDay].Icon)}/>
                                 <span>{item.Temperature.Minimum.Value} °C</span>
-                                <span>{item[isEvening ? 'Night' : 'Day'].IconPhrase}</span>
+                                <span>{item[timeOfDay].IconPhrase}</span>
                             </CardContent>
                             <CardActions style={{justifyContent: 'center'}}>
                                 <Button href={item.Link}>View Full Forecast</Button>
