@@ -1,4 +1,4 @@
-import {REMOVE_FROM_FAVORITES, ADD_TO_FAVORITES} from './actions';
+import {TOGGLE_FAVORITE} from './actions';
 
 
 const INITIAL_STATE = {favorites: JSON.parse(localStorage.getItem('favorites')) ?? [] }
@@ -7,16 +7,25 @@ const INITIAL_STATE = {favorites: JSON.parse(localStorage.getItem('favorites')) 
 export function FavoritesReducer(state = INITIAL_STATE, action){
 
     const {type, payload} = action;
+    let updatedFavorites = [];
     switch(type){
-        case REMOVE_FROM_FAVORITES: {
-            return state;
-        }
-        case ADD_TO_FAVORITES: {
-            return state;
+        case TOGGLE_FAVORITE: {
+            const {locationKey, locationName} = payload;
+            const {favorites} = state;
+            const itemAlreadySaved = favorites.some(x => x.locationKey === locationKey);
+
+            if(itemAlreadySaved){
+                updatedFavorites = favorites.filter(x => x.locationKey !== locationKey);
+            } else {
+                updatedFavorites = [...favorites, {locationKey, locationName, weatherData: null, validUntil: null}]
+            }
+            break;
         }
         default: {
             return state;
         }
     }
 
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    return {...state, favorites: updatedFavorites};
 }

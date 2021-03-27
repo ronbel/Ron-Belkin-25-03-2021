@@ -18,3 +18,4 @@ export const store = createStore(rootReducer, middleware);
 export const useForecast = () => useSelector(state => state.forecast);
 export const useFavorites = () => useSelector(state => state.favorites);
 export {ACTION_CREATORS as ForecastActions} from './forecast-display/actions';
+export {ACTION_CREATORS as FavoritesActions} from './favorites/actions';

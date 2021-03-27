@@ -1,3 +1,10 @@
-export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
-export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const UPDATE_FAVORITE_WEATHER_DATA = 'UPDATE_FAVORITE_WEATHER_DATA';
+
+function toggleFavorite({locationKey, locationName}){
+    return {type: TOGGLE_FAVORITE, payload: {locationKey,locationName}};
+}
+
+
+export const ACTION_CREATORS = {toggleFavorite};
 
