@@ -60,7 +60,7 @@ export default function ForecastDisplay() {
                                 <span>{item.Temperature.Minimum.Value} °C</span>
                                 <span>{item[isEvening ? 'Night' : 'Day'].IconPhrase}</span>
                             </CardContent>
-                            <CardActions>
+                            <CardActions style={{justifyContent: 'center'}}>
                                 <Button href={item.Link}>View Full Forecast</Button>
                             </CardActions>
                         </Card>

@@ -1,6 +1,6 @@
 @use "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 @import-normalize;
-
+@import './style/fonts';
 
 *{
     box-sizing: border-box;
@@ -11,4 +11,8 @@ html, body{
     padding: 0;
     border: 0;
     outline: 0;
+}
+
+h1,h2,h3,h4,h5,h6,span{
+    font-family: $open-sans;
 }
