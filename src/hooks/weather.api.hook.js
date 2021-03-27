@@ -1,5 +1,5 @@
 import Axios from 'axios';
-
+import {useMemo} from 'react';
 
 const autocomplete_results = [
     {
@@ -327,26 +327,113 @@ const tel_aviv_forecast = {
     ]
 };
 
+const tel_aviv_current_condition = [
+    {
+        "LocalObservationDateTime": "2021-03-27T21:05:00+03:00",
+        "EpochTime": 1616868300,
+        "WeatherText": "Mostly clear",
+        "WeatherIcon": 34,
+        "HasPrecipitation": false,
+        "PrecipitationType": null,
+        "IsDayTime": false,
+        "Temperature": {
+            "Metric": {
+                "Value": 15.0,
+                "Unit": "C",
+                "UnitType": 17
+            },
+            "Imperial": {
+                "Value": 59.0,
+                "Unit": "F",
+                "UnitType": 18
+            }
+        },
+        "MobileLink": "http://m.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
+    }
+]
+
+
+const geolocation_result = {
+    "Version": 1,
+    "Key": "215838",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Holon",
+    "EnglishName": "Holon",
+    "PrimaryPostalCode": "",
+    "Region": {
+        "ID": "MEA",
+        "LocalizedName": "Middle East",
+        "EnglishName": "Middle East"
+    },
+    "Country": {
+        "ID": "IL",
+        "LocalizedName": "Israel",
+        "EnglishName": "Israel"
+    },
+    "AdministrativeArea": {
+        "ID": "TA",
+        "LocalizedName": "Tel Aviv",
+        "EnglishName": "Tel Aviv",
+        "Level": 1,
+        "LocalizedType": "District",
+        "EnglishType": "District",
+        "CountryID": "IL"
+    },
+    "TimeZone": {
+        "Code": "IDT",
+        "Name": "Asia/Jerusalem",
+        "GmtOffset": 3.0,
+        "IsDaylightSaving": true,
+        "NextOffsetChange": "2021-10-30T23:00:00Z"
+    },
+    "GeoPosition": {
+        "Latitude": 32.003,
+        "Longitude": 34.756,
+        "Elevation": {
+            "Metric": {
+                "Value": 23.0,
+                "Unit": "m",
+                "UnitType": 5
+            },
+            "Imperial": {
+                "Value": 75.0,
+                "Unit": "ft",
+                "UnitType": 0
+            }
+        }
+    },
+    "IsAlias": false,
+    "SupplementalAdminAreas": [],
+    "DataSets": [
+        "AirQualityCurrentConditions",
+        "AirQualityForecasts",
+        "Alerts",
+        "ForecastConfidence"
+    ]
+}
+
+
+
+export class WeatherApi{
+
+    constructor(){
+        this.requestSender = Axios.create({
+            baseURL: process.env.REACT_APP_WEATHER_API_BASE_URL,
+            params: {
+                apikey: process.env.REACT_APP_WEATHER_API_KEY
+            }
+        });
+    }
+
+    getLocationForAutocomplete = async query => autocomplete_results; //(await this.requestSender.get('/locations/v1/cities/autocomplete', {params: {q: query}})).data
+    getConditionsForLocation = async locationKey => tel_aviv_current_condition; //(await this.requestSender.get(`/currentconditions/v1/${locationKey}`)).data[0],
+    getForecastForLocation = async locationKey => tel_aviv_forecast; //(await this.requestSender.get(`/forecasts/v1/daily/5day/${locationKey}`, {params: {metric: true}})).data,
+    getLocationDataByCoords = async (lat,long) => geolocation_result //(await this.requestSender.get('/locations/v1/cities/geoposition/search'), {params: {q: `${lat},${long}`}}).data
+}
 
 
 export function useWeatherApi(){
-
-    const requestSender = Axios.create({
-        baseURL: process.env.REACT_APP_WEATHER_API_BASE_URL,
-        params: {
-            apikey: process.env.REACT_APP_WEATHER_API_KEY
-        }
-    });
-
-
-    return {
-        getLocationForAutocomplete: async query => autocomplete_results, //(await requestSender.get('/locations/v1/cities/autocomplete', {params: {q: query}, mode: 'no-cors'})).data,
-        getConditionsForLocation: async locationKey => (await requestSender.get(`/currentconditions/v1/${locationKey}`)).data,
-        getForecastForLocation: async locationKey => tel_aviv_forecast, //(await requestSender.get(`/forecasts/v1/daily/5day/${locationKey}`, {params: {metric: true}})).data,
-        getLocationData: async (lat,long) => (await requestSender.get('/locations/v1/cities/geoposition/search'), {params: {q: `${lat},${long}`}}).data
-    }
-
-
-
-
+    return useMemo(() => new WeatherApi(), []);
 }

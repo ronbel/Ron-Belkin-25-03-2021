@@ -1,4 +1,6 @@
 import {REMOVE_FROM_FAVORITES, ADD_TO_FAVORITES} from './actions';
+
+
 const INITIAL_STATE = {favorites: JSON.parse(localStorage.getItem('favorites')) ?? [] }
 
 
