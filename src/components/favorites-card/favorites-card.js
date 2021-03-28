@@ -7,6 +7,7 @@ import DefaultSpinner from '../default-spinner/default-spinner';
 import styles from './favorites-card.module.scss';
 import {useWeatherApi} from '../../hooks/weather.api.hook';
 import { useHistory } from "react-router-dom";
+import {useTempUnit} from '../../hooks/temp.unit.hook';
 
 export default function FavoritesCard({ item }) {
     const [hasError, setHasError] = useState(false);
@@ -15,6 +16,7 @@ export default function FavoritesCard({ item }) {
     const dispatch = useDispatch();
     const api = useWeatherApi();
     const history = useHistory();
+    const {getTemperatureText} = useTempUnit();
 
     useEffect(() => {
         const init = async () => {
@@ -48,7 +50,7 @@ export default function FavoritesCard({ item }) {
                 {!!weatherData && 
                 <>
                     <img alt={weatherData.WeatherText} src={api.getIconUrl(weatherData.WeatherIcon)}/>
-                    <span>{weatherData.Temperature.Metric.Value} °C</span>
+                    <span>{getTemperatureText(weatherData.Temperature.Metric.Value)}</span>
                 </>
                 }
             </CardContent>

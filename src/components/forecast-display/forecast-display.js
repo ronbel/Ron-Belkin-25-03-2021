@@ -9,10 +9,12 @@ import { useToasts } from 'react-toast-notifications';
 import DefaultSpinner from '../default-spinner/default-spinner';
 import {useWeatherApi} from '../../hooks/weather.api.hook';
 import MobileOptions from './mobile-options';
+import {useTempUnit} from '../../hooks/temp.unit.hook';
 
 export default function ForecastDisplay() {
     const { forecastData, locationName, locationKey, isFetching, viewEmpty, hasError } = useForecast();
     const { favorites } = useFavorites();
+    const {getTemperatureText} = useTempUnit();
 
     const getDayName = dateString => (new Date(dateString)).toLocaleString('en-us', { weekday: 'short' })
     const timeOfDay = (new Date()).getHours > 15 ? 'Night' : 'Day';
@@ -77,7 +79,7 @@ export default function ForecastDisplay() {
                                         <CardContent className={styles['day-card-content']}>
                                             <h4>{getDayName(item.Date)}</h4>
                                             <img alt={item[timeOfDay].IconPhrase} src={api.getIconUrl(item[timeOfDay].Icon)} />
-                                            <span>{item.Temperature.Maximum.Value} °C</span>
+                                            <span>{getTemperatureText(item.Temperature.Maximum.Value)}</span>
                                             <span>{item[timeOfDay].IconPhrase}</span>
                                         </CardContent>
                                         <CardActions style={{ justifyContent: 'center' }}>
