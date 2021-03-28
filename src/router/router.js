@@ -9,7 +9,7 @@ import Fader from 'react-fader';
 export default function AppRouter() {
 
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Header/>
             <Switch component={Fader}>
                 <Route exact path="/" component={MainScreen} />
