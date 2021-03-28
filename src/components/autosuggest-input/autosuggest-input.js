@@ -17,8 +17,8 @@ export default function AutosuggestInput() {
             return;
         }
 
-        api.getLocationForAutocomplete(value)
-            .then(results => resolveOptions(results.map(r => ({ value: r.Key, label: `${r.LocalizedName} - ${r?.Country?.LocalizedName}` }))))
+        api.getLocationForAutocomplete(inputValue)
+            .then(results => resolveOptions(results?.map(r => ({ value: r.Key, label: `${r.LocalizedName} - ${r?.Country?.LocalizedName}` }))))
             .catch(e => {
                 addToast('An error has occured while fetching locations', { appearance: 'error' });
                 console.error(e);
