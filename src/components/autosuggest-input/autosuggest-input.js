@@ -21,7 +21,6 @@ export default function AutosuggestInput() {
             .then(results => resolveOptions(results?.map(r => ({ value: r.Key, label: `${r.LocalizedName} - ${r?.Country?.LocalizedName}` }))))
             .catch(e => {
                 addToast('An error has occured while fetching locations', { appearance: 'error' });
-                console.error(e);
             });
 
     }, 500), []);
