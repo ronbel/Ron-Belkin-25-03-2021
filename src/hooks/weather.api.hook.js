@@ -426,9 +426,9 @@ export class WeatherApi{
             }
         });
     }
-
+    getIconUrl = iconNumber => `https://developer.accuweather.com/sites/default/files/${iconNumber.toString().padStart(2, '0')}-s.png`
     getLocationForAutocomplete = async query => autocomplete_results; //(await this.requestSender.get('/locations/v1/cities/autocomplete', {params: {q: query}})).data
-    getConditionsForLocation = async locationKey => tel_aviv_current_condition; //(await this.requestSender.get(`/currentconditions/v1/${locationKey}`)).data[0],
+    getConditionsForLocation = async locationKey => tel_aviv_current_condition[0]; //(await this.requestSender.get(`/currentconditions/v1/${locationKey}`)).data[0],
     getForecastForLocation = async locationKey => tel_aviv_forecast; //(await this.requestSender.get(`/forecasts/v1/daily/5day/${locationKey}`, {params: {metric: true}})).data,
     getLocationDataByCoords = async (lat,long) => geolocation_result //(await this.requestSender.get('/locations/v1/cities/geoposition/search'), {params: {q: `${lat},${long}`}}).data
 }

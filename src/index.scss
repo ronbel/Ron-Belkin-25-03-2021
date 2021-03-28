@@ -1,4 +1,4 @@
-@use "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+@import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 @import-normalize;
 @import './style/fonts';
 
@@ -15,4 +15,5 @@ html, body{
 
 h1,h2,h3,h4,h5,h6,span{
     font-family: $open-sans;
+    text-align: center;
 }

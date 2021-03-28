@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import MainScreen from '../screens/MainScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
+import MainScreen from '../screens/main.screen';
+import FavoritesScreen from '../screens/favorites.screen';
 import Header from '../components/header/header';
 
 import Switch from 'react-router-transition-switch';
