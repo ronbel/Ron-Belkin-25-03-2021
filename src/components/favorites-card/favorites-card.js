@@ -51,6 +51,7 @@ export default function FavoritesCard({ item }) {
                 <>
                     <img alt={weatherData.WeatherText} src={api.getIconUrl(weatherData.WeatherIcon)}/>
                     <span>{getTemperatureText(weatherData.Temperature.Metric.Value)}</span>
+                    <span>{weatherData.WeatherText}</span>
                 </>
                 }
             </CardContent>

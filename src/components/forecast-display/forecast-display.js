@@ -16,7 +16,7 @@ export default function ForecastDisplay() {
     const { favorites } = useFavorites();
     const {getTemperatureText} = useTempUnit();
 
-    const getDayName = dateString => (new Date(dateString)).toLocaleString('en-us', { weekday: 'short' })
+    const getDayName = dateString => (new Date(dateString)).toLocaleString('en-us', { weekday: 'short' });
     const timeOfDay = (new Date()).getHours > 15 ? 'Night' : 'Day';
     const api = useWeatherApi();
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function ForecastDisplay() {
 
 
     if (viewEmpty || hasError) {
-        return <h1>{hasError ? 'An error has occured. Try searching for another location' : 'Select a location to see its weather forecast'}</h1>
+        return <h1>{hasError ? 'An error has occured. Try searching for another location' : 'Select a location to see its weather forecast'}</h1>;
     }
 
     return (

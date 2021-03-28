@@ -19,11 +19,11 @@ export default function MobileDrawer() {
             </Button>
 
             <Drawer anchor="right" onClose={closeDrawer} open={isOpen}>
-                <div className={styles['drawer-content']}>
+                <nav className={styles['drawer-content']}>
                     <Link onClick={closeDrawer} exact activeClassName={styles.active} className={styles.link} to="/">Home</Link>
                     <Link onClick={closeDrawer} exact activeClassName={styles.active} className={styles.link} to="/favorites">Favorites</Link>
                     <TempUnitButton/>
-                </div>
+                </nav>
             </Drawer>
         </>)
 

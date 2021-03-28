@@ -9,9 +9,9 @@ export function useTempUnit() {
 
     const getTemperatureText = celsius => {
         if(selectedTempUnit === TEMP_UNITS.CELCIUS){
-            return `${celsius} °C`
+            return `${celsius} °C`;
         }
-        return `${convertToFarenheit(celsius)} °F`
+        return `${convertToFarenheit(celsius)} °F`;
     }
 
     return {convertToFarenheit,getTemperatureText};

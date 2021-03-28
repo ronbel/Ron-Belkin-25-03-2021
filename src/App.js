@@ -10,7 +10,6 @@ import DefaultSpinner from './components/default-spinner/default-spinner';
 
 function App() {
 
-
   const [appReady, setAppReady] = useState(false);
   const { addToast } = useToasts();
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ function App() {
 
         if (geoData.error) {
           let message = 'We were unable to get your location';
-          if (geoData?.error?.code === 1) {
+          if (geoData.error?.code === 1) {
             message = 'Location permissions were denied. To get the weather forecast of your location, allow location permissions.'
           }
           addToast(message, { appearance: 'warning' })
