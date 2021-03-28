@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import MainScreen from '../screens/main.screen';
 import FavoritesScreen from '../screens/favorites.screen';
 import Header from '../components/header/header';
@@ -9,7 +9,7 @@ import Fader from 'react-fader';
 export default function AppRouter() {
 
     return (
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename="/">
             <Header/>
             <Switch component={Fader}>
                 <Route exact path="/" component={MainScreen} />
