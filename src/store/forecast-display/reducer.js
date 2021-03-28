@@ -10,7 +10,7 @@ export function ForecastReducer(state = INITIAL_STATE, action){
         case CLEAR_VIEW: return {...state,...INITIAL_STATE};
         case START_DATA_FETCH: return {...state, isFetching: true}
         case SET_INITIAL_VIEW: return {...state,...payload, viewEmpty: false}
-        case UPDATE_VIEW: return {...state,...payload, isFetching: false, hasError: false};
+        case UPDATE_VIEW: return {...state,...payload, isFetching: false, hasError: false, viewEmpty: false};
         case SET_ERROR: return {...state, hasError: true};
         default: return state
     }

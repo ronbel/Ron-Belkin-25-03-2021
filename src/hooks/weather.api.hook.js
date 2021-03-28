@@ -16,7 +16,7 @@ export class WeatherApi{
     getLocationForAutocomplete = async query => (await this.requestSender.get('/locations/v1/cities/autocomplete', {params: {q: query}})).data;
     getConditionsForLocation = async locationKey => (await this.requestSender.get(`/currentconditions/v1/${locationKey}`)).data[0];
     getForecastForLocation = async locationKey => (await this.requestSender.get(`/forecasts/v1/daily/5day/${locationKey}`, {params: {metric: true}})).data;
-    getLocationDataByCoords = async (lat,long) => (await this.requestSender.get('/locations/v1/cities/geoposition/search'), {params: {q: `${lat},${long}`}}).data;
+    getLocationDataByCoords = async (lat,long) => (await this.requestSender.get('/locations/v1/cities/geoposition/search', {params: {q: `${lat},${long}`}})).data;
 }
 
 
