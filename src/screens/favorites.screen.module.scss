@@ -1,3 +1,6 @@
+@import '../style/breakpoint';
+
+
 .favorites-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -5,3 +8,16 @@
     row-gap: 20px;
     column-gap: 20px;
 }
+
+@media #{$breakpoint2}{
+    .favorites-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media #{$breakpoint1} {
+    .favorites-container{
+        grid-template-columns: 1fr;
+    }
+}
+

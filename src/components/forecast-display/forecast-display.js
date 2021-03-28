@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Paper, Tooltip, Card, CardActions, CardContent, Button } from '@material-ui/core';
+import { Paper, Tooltip, Card, CardActions, CardContent, Button, MenuItem } from '@material-ui/core';
 import styles from './forecast-display.module.scss';
 import { Favorite, FavoriteBorder, CancelPresentation } from '@material-ui/icons';
 import FadeIn from 'react-fade-in';
@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 import DefaultSpinner from '../default-spinner/default-spinner';
 import {useWeatherApi} from '../../hooks/weather.api.hook';
+import MobileOptions from './mobile-options';
 
 export default function ForecastDisplay() {
-
     const { forecastData, locationName, locationKey, isFetching, viewEmpty, hasError } = useForecast();
     const { favorites } = useFavorites();
 
@@ -62,6 +62,11 @@ export default function ForecastDisplay() {
                                 <CancelPresentation fontSize="large" />
                             </div>
                         </Tooltip>
+
+                        <MobileOptions className={styles['mobile-options']}>
+                            <MenuItem onClick={toggleFavorite}>{isSavedToFavorites ? 'Remove From Favorites' : 'Add To Favorites'}</MenuItem>
+                            <MenuItem onClick={clearData}>Clear Forecast</MenuItem>
+                        </MobileOptions>
 
 
 

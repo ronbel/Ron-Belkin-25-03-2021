@@ -1,4 +1,5 @@
 @import "../../style/colors";
+@import "../../style/breakpoint";
 
 .container {
     position: relative;
@@ -7,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
     .favorites {
         position: absolute;
@@ -26,13 +28,13 @@
         display: flex;
         width: 100%;
         padding: 2rem;
-        justify-content: space-between;
         align-items: center;
     }
 
     .day-card {
         border: 3px solid $main-color;
         flex: 1;
+        margin-right: 40px;
 
         .day-card-content {
             width: 200px;
@@ -41,9 +43,32 @@
             flex-direction: column;
             align-items: center;
 
-            span{
+            span {
                 margin-bottom: 5px;
             }
         }
+    }
+}
+
+.mobile-options{
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    display: none;
+}
+
+@media #{$breakpoint1},#{$breakpoint2},#{$breakpoint3} {
+    .cards-container {
+        overflow-y: scroll;
+    }
+}
+
+@media #{$breakpoint1}{
+    .mobile-options{
+        display: block;
+    }
+
+    .clear, .favorites{
+        display: none;
     }
 }

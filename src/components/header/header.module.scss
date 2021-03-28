@@ -1,5 +1,6 @@
 @import '../../style/colors';
 @import '../../style/fonts';
+@import '../../style/breakpoint';
 
 .header{
     width: '100%';
@@ -41,10 +42,24 @@
     }
 }
 
+.menu{
+    display: none;
+}
+
 @keyframes popIn{
     from{
         transform: translateY(-200%);
     } to {
         transform: none;
+    }
+}
+
+@media #{$breakpoint1}{
+    .links-container{
+        display: none;
+    }
+
+    .menu{
+        display: block;
     }
 }
